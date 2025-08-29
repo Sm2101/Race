@@ -1,33 +1,21 @@
-body {
-  margin: 0;
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  color: white;
-}
+class Car {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 50;
+    this.height = 100;
+    this.speed = 5;
+  }
 
-.game-container {
-  position: relative;
-}
+  move(keys) {
+    if (keys["ArrowLeft"] && this.x > 0) this.x -= this.speed;
+    if (keys["ArrowRight"] && this.x + this.width < 400) this.x += this.speed;
+    if (keys["ArrowUp"] && this.y > 0) this.y -= this.speed;
+    if (keys["ArrowDown"] && this.y + this.height < 600) this.y += this.speed;
+  }
 
-#gameCanvas {
-  background: #222;
-  border: 3px solid #fff;
-}
-
-#ui {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-#restartBtn {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+  draw(ctx) {
+    ctx.fillStyle = "red";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
 }
