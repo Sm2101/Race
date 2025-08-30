@@ -1,3 +1,10 @@
+// Obstacle images must exist in your project folder
+const OBSTACLE_IMAGES = [
+  "cone.png",
+  "barrel.png",
+  "block.png"
+];
+
 class Obstacle {
   constructor(x, y, speed) {
     this.x = x;
@@ -5,11 +12,13 @@ class Obstacle {
     this.width = 50;
     this.height = 100;
     this.speed = speed;
+    this.image = new Image();
+    this.image.src = OBSTACLE_IMAGES[Math.floor(Math.random() * OBSTACLE_IMAGES.length)];
   }
 
   draw(ctx) {
-    ctx.fillStyle = "blue";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    if (!ctx) return;
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
   update() {
@@ -17,6 +26,7 @@ class Obstacle {
   }
 
   collides(car) {
+    if (!car) return false;
     return (
       this.x < car.x + car.width &&
       this.x + this.width > car.x &&
