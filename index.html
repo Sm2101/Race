@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="fevicon.ico">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=400, initial-scale=1.0">
+  <meta name="viewport" content="width=400, initial-scale=1.0, user-scalable=no">
   <title>Super Car Racing Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -26,6 +25,11 @@
       <button class="carOption" data-car="blue">Blue</button>
       <button class="carOption" data-car="green">Green</button>
     </div>
+    <!-- Mobile Controls -->
+    <div id="touchControls">
+      <button id="touchLeft" class="touchBtn">◀</button>
+      <button id="touchRight" class="touchBtn">▶</button>
+    </div>
   </div>
   <audio id="bgMusic" src="music.mp3" loop></audio>
   <script src="car.js"></script>
@@ -36,4 +40,3 @@
   <script src="game.js"></script>
 </body>
 </html>
-
