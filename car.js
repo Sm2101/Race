@@ -1,10 +1,22 @@
+// Car images must exist in your project folder
+const CAR_IMAGES = {
+  red: "red_car.png",
+  blue: "blue_car.png",
+  green: "green_car.png"
+};
+
 class Car {
-  constructor(x, y) {
+  constructor(x, y, color = "red") {
     this.x = x;
     this.y = y;
     this.width = 50;
     this.height = 100;
     this.speed = 5;
+    this.color = color;
+    this.image = new Image();
+    this.image.src = CAR_IMAGES[color] || CAR_IMAGES.red;
+    this.shielded = false;
+    this.fuel = 1; // Range 0-1
   }
 
   move(keys) {
@@ -15,7 +27,17 @@ class Car {
   }
 
   draw(ctx) {
-    ctx.fillStyle = "red";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    if (!ctx) return;
+    ctx.save();
+    if (this.shielded) {
+      ctx.shadowColor = 'cyan';
+      ctx.shadowBlur = 20;
+    }
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    ctx.restore();
+  }
+
+  refuel(amount) {
+    this.fuel = Math.min(1, this.fuel + amount);
   }
 }
