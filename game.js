@@ -39,6 +39,9 @@ function loop() {
     obstacles.push(new Obstacle(Math.random() * 350, -100, 5));
   }
 
+  e.x += drift * dt;
+e.vy = baseSpeed + randomFactor;
+
   obstacles.forEach((obs, index) => {
     obs.update();
     obs.draw(ctx);
