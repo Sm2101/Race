@@ -14,57 +14,7 @@ class UI {
     this.bgMusic = document.getElementById("bgMusic");
   }
 
-  updateScore(value) {
-    this.score = value;
-    if (this.scoreElement) this.scoreElement.textContent = "Score: " + this.score;
-    this.updateHighScore();
-  }
-
-  updateHighScore() {
-    if (this.score > this.highScore) {
-      this.highScore = this.score;
-      localStorage.setItem('highScore', this.highScore);
-    }
-    if (this.highScoreElement) this.highScoreElement.textContent = "High Score: " + this.highScore;
-  }
-
-  updateFuel(val) {
-    if (this.fuelBar) {
-      this.fuelBar.style.background = "linear-gradient(to right, #fd0 " + (val * 100) + "%, #555 " + (val * 100) + "%)";
-    }
-  }
-
-  playCrashSound() {
-    if (this.crashSound) {
-      this.crashSound.currentTime = 0;
-      this.crashSound.play();
-    }
-  }
-
-  playPickupSound() {
-    if (this.pickupSound) {
-      this.pickupSound.currentTime = 0;
-      this.pickupSound.play();
-    }
-  }
-
-  playBgMusic() {
-    if (this.bgMusic && this.bgMusic.paused) {
-      this.bgMusic.volume = 0.5;
-      this.bgMusic.play();
-    }
-  }
-
-  showRestart(callback) {
-    if (this.restartBtn) {
-      this.restartBtn.style.display = "block";
-      this.restartBtn.onclick = callback;
-    }
-  }
-
-  hideRestart() {
-    if (this.restartBtn) this.restartBtn.style.display = "none";
-  }
+  // ... other methods ...
 
   showCarSelection(callback) {
     if (!this.carSelection) return;
