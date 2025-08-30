@@ -3,7 +3,8 @@ class UI {
     this.scoreElement = document.getElementById("score");
     this.restartBtn = document.getElementById("restartBtn");
     this.score = 0;
-    this.crashSound = new Audio('...');
+    // Uncomment and set a valid sound file if you want crash sound functionality
+    // this.crashSound = new Audio('crash.mp3');
   }
 
   updateScore(value) {
@@ -19,7 +20,8 @@ class UI {
   }
 
   playCrashSound() {
-    this.crashSound.play();
+    // Uncomment if you have a valid sound file
+    // this.crashSound.play();
   }
 
   showRestart(callback) {
