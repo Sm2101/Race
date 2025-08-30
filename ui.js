@@ -5,7 +5,7 @@ class UI {
     this.score = 0;
   }
 
-}
+
 
   updateScore(value) {
     this.score = value;
@@ -29,3 +29,5 @@ crashSound.play();
 
 if (score > highScore) {
   localStorage.setItem('highScore', score);}
+}
+}
