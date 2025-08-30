@@ -1,41 +1,80 @@
 class UI {
   constructor() {
     this.scoreElement = document.getElementById("score");
+    this.highScoreElement = document.getElementById("highScore");
+    this.fuelBar = document.getElementById("fuelBar");
     this.restartBtn = document.getElementById("restartBtn");
+    this.chooseCarBtn = document.getElementById("chooseCarBtn");
+    this.carSelection = document.getElementById("carSelection");
     this.score = 0;
-    // Uncomment and set a valid sound file if you want crash sound functionality
-    // this.crashSound = new Audio('crash.mp3');
+    this.highScore = Number(localStorage.getItem('highScore')) || 0;
+    this.updateHighScore();
+    this.crashSound = new Audio('crash.mp3');
+    this.pickupSound = new Audio('pickup.mp3');
+    this.bgMusic = document.getElementById("bgMusic");
   }
 
   updateScore(value) {
     this.score = value;
-    this.scoreElement.textContent = "Score: " + this.score;
+    if (this.scoreElement) this.scoreElement.textContent = "Score: " + this.score;
+    this.updateHighScore();
+  }
+
+  updateHighScore() {
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      localStorage.setItem('highScore', this.highScore);
+    }
+    if (this.highScoreElement) this.highScoreElement.textContent = "High Score: " + this.highScore;
   }
 
   updateFuel(val) {
-    const fuelBar = document.getElementById('fuelBar');
-    if (fuelBar) {
-      fuelBar.style.width = (val * 100) + '%';
+    if (this.fuelBar) {
+      this.fuelBar.style.background = "linear-gradient(to right, #fd0 " + (val * 100) + "%, #555 " + (val * 100) + "%)";
     }
   }
 
   playCrashSound() {
-    // Uncomment if you have a valid sound file
-    // this.crashSound.play();
+    if (this.crashSound) {
+      this.crashSound.currentTime = 0;
+      this.crashSound.play();
+    }
+  }
+
+  playPickupSound() {
+    if (this.pickupSound) {
+      this.pickupSound.currentTime = 0;
+      this.pickupSound.play();
+    }
+  }
+
+  playBgMusic() {
+    if (this.bgMusic && this.bgMusic.paused) {
+      this.bgMusic.volume = 0.5;
+      this.bgMusic.play();
+    }
   }
 
   showRestart(callback) {
-    this.restartBtn.style.display = "block";
-    this.restartBtn.onclick = callback;
+    if (this.restartBtn) {
+      this.restartBtn.style.display = "block";
+      this.restartBtn.onclick = callback;
+    }
   }
 
   hideRestart() {
-    this.restartBtn.style.display = "none";
+    if (this.restartBtn) this.restartBtn.style.display = "none";
   }
 
-  saveHighScore(score, highScore) {
-    if (score > highScore) {
-      localStorage.setItem('highScore', score);
-    }
+  showCarSelection(callback) {
+    if (!this.carSelection) return;
+    this.carSelection.style.display = "block";
+    let options = this.carSelection.querySelectorAll('.carOption');
+    options.forEach(btn => {
+      btn.onclick = () => {
+        callback(btn.dataset.car);
+        this.carSelection.style.display = "none";
+      };
+    });
   }
 }
