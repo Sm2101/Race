@@ -4,8 +4,7 @@ class UI {
     this.restartBtn = document.getElementById("restartBtn");
     this.score = 0;
   }
-if (score > highScore) {
-  localStorage.setItem('highScore', score);
+
 }
 
   updateScore(value) {
@@ -27,4 +26,6 @@ crashSound.play();
   hideRestart() {
     this.restartBtn.style.display = "none";
   }
-}
+
+if (score > highScore) {
+  localStorage.setItem('highScore', score);}
