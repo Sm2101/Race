@@ -4,6 +4,9 @@ class UI {
     this.restartBtn = document.getElementById("restartBtn");
     this.score = 0;
   }
+if (score > highScore) {
+  localStorage.setItem('highScore', score);
+}
 
   updateScore(value) {
     this.score = value;
@@ -13,7 +16,9 @@ class UI {
 updateFuel(val) {
   document.getElementById('fuelBar').style.width = (val*100)+'%';
 }
-  
+  const crashSound = new Audio('...');
+crashSound.play();
+
   showRestart(callback) {
     this.restartBtn.style.display = "block";
     this.restartBtn.onclick = callback;
