@@ -1,14 +1,3 @@
-function clamp(val, min, max) {
-  return Math.max(min, Math.min(max, val));
-}
-let MIN_SPEED = 1;
-let MAX_SPEED = 10;
-let state = { speed: 5 };
-// ... rest of your code
-// Example in your game loop:
-state.speed = clamp(state.speed + (keys.up? 0.05 : -0.03), MIN_SPEED, MAX_SPEED);
-state.speed *= 0.98; // friction
-
 const canvas = document.getElementById("gameCanvas");
 canvas.width = 400;
 canvas.height = 600;
@@ -46,9 +35,6 @@ function loop() {
     obstacles.push(new Obstacle(Math.random() * 350, -100, 5));
   }
 
-  e.x += drift * dt;
-e.vy = baseSpeed + randomFactor;
-
   obstacles.forEach((obs, index) => {
     obs.update();
     obs.draw(ctx);
@@ -56,6 +42,7 @@ e.vy = baseSpeed + randomFactor;
     if (obs.collides(car)) {
       gameOver = true;
       ui.showRestart(init);
+      ui.playCrashSound && ui.playCrashSound();
     }
 
     if (obs.y > canvas.height) {
@@ -71,7 +58,6 @@ e.vy = baseSpeed + randomFactor;
 document.addEventListener("keydown", e => (keys[e.key] = true));
 document.addEventListener("keyup", e => (keys[e.key] = false));
 
-init();
 window.onload = () => {
-  initGame();   // your function that sets up road, car, UI
+  init();
 };
