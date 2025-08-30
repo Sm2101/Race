@@ -65,3 +65,7 @@ document.addEventListener("keydown", e => (keys[e.key] = true));
 document.addEventListener("keyup", e => (keys[e.key] = false));
 
 init();
+window.onload = () => {
+  initGame();   // your function that sets up road, car, UI
+  gameLoop();   // start the loop
+};
