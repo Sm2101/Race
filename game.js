@@ -1,3 +1,10 @@
+function clamp(val, min, max) {
+  return Math.max(min, Math.min(max, val));
+}
+let MIN_SPEED = 1;
+let MAX_SPEED = 10;
+let state = { speed: 5 };
+// ... rest of your code
 // Example in your game loop:
 state.speed = clamp(state.speed + (keys.up? 0.05 : -0.03), MIN_SPEED, MAX_SPEED);
 state.speed *= 0.98; // friction
