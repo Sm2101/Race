@@ -10,6 +10,10 @@ class UI {
     this.scoreElement.textContent = "Score: " + this.score;
   }
 
+updateFuel(val) {
+  document.getElementById('fuelBar').style.width = (val*100)+'%';
+}
+  
   showRestart(callback) {
     this.restartBtn.style.display = "block";
     this.restartBtn.onclick = callback;
