@@ -1,11 +1,10 @@
 body {
   margin: 0;
-  background: #111;
+  background: #222;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
   font-family: Arial, sans-serif;
   color: white;
 }
@@ -17,17 +16,60 @@ body {
 #gameCanvas {
   background: #222;
   border: 3px solid #fff;
+  display: block;
 }
 
 #ui {
   position: absolute;
   top: 10px;
   left: 10px;
+  background: rgba(20,20,20,0.7);
+  padding: 10px;
+  border-radius: 10px;
 }
 
-#restartBtn {
+#score, #highScore {
+  margin: 5px 0;
+}
+
+#fuelContainer {
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+#fuelBar {
+  width: 100px;
+  height: 10px;
+  background: #555;
+  border: 1px solid #fff;
+  margin-left: 5px;
+}
+
+#restartBtn, #chooseCarBtn {
   margin-top: 10px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+}
+
+#carSelection {
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  background: #333;
+  color: white;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.carOption {
+  background: #111;
+  color: white;
+  border: 1px solid #fff;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
 }
